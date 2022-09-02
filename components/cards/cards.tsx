@@ -3,10 +3,10 @@ import CardItem from "./components/card-item/card-item";
 
 const Cards = () => {
     return <div className={styles.container}>
-        <CardItem/>
-        <CardItem/>
-        <CardItem/>
-        <CardItem/>
+        <CardItem price={15} time="30-40"/>
+        <CardItem price={15} time="30-40"/>
+        <CardItem price={15} time="30-40"/>
+        <CardItem price={15} time="30-40"/>
     </div>
 }
 
