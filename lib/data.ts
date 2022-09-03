@@ -7,9 +7,7 @@ export const fetchRestaurants = async () => {
   if (env === 'development') {
     return sampleData;
   } else if (env === 'production') {
-    const response: AxiosResponse = await axios.get(
-      'http://localhost:3000/api/restaurants',
-    );
+    const response: AxiosResponse = await axios.get('/api/restaurants');
     return response.data.data;
   }
 };
