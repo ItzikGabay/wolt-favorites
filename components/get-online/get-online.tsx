@@ -1,6 +1,7 @@
 import styles from './get-online.module.scss';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { fetchRestaurants } from '../../lib/data';
+import useSound from 'use-sound';
 
 interface ITitleProps {
   id: string;
@@ -15,12 +16,19 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
   const [tryNum, setTryNum] = useState(0);
   const [inProcess, setInProcess] = useState(isActive);
 
+  const [play] = useSound('/laugh.mp3');
+
   useEffect(() => {
     if (!isOnline && inProcess) {
       setTimeout(() => {
-        fetchRestaurants(['vitrina']).then(res => {
-          setIsOnline(res[0].results[0].online);
-          setTryNum(prevState => prevState + 1);
+        fetchRestaurants([id]).then(res => {
+          const onlineResult = res[0].results[0].online;
+          setIsOnline(onlineResult);
+          if (!!onlineResult) {
+            play();
+          } else {
+            setTryNum(prevState => prevState + 1);
+          }
         });
       }, 3000);
     } else {
@@ -33,7 +41,7 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
       className={`${styles.container} ${inProcess && styles.active}`}
       onClick={() => setInProcess(true)}
       disabled={inProcess}>
-      {inProcess ? 'Fetching..' : 'Get online'}
+      {inProcess ? 'Fetching.. 🫣' : 'Get online 🐹'}
     </button>
   );
 };

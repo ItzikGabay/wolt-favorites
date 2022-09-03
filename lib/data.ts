@@ -1,30 +1,31 @@
 import sampleData from '../sample-data.json';
 import axios, { AxiosResponse } from 'axios';
 
-export const fetchRestaurants = async (ids?: string[]) => {
-  const env: string = process.env.NODE_ENV;
+const env: string = process.env.NODE_ENV;
+const WOLT_API: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
+const BASE_URL: string =
+  env === 'development'
+    ? 'http://localhost:3000'
+    : 'https://itzik-wolt-favorites-itzikgabay.vercel.app';
 
+const API_URL: string = `${BASE_URL}/api/restaurants`;
+
+export const fetchRestaurants = async (ids?: string[]) => {
   if (env === 'development') {
     return sampleData;
   } else if (env === 'production') {
     if (Array.isArray(ids)) {
-      const response: AxiosResponse = await axios.post(
-        'https://itzik-wolt-favorites-itzikgabay.vercel.app/api/restaurants',
-        { ids },
-      );
+      const response: AxiosResponse = await axios.post(API_URL, { ids });
       return response.data.data;
     }
 
-    const response: AxiosResponse = await axios.get(
-      'https://itzik-wolt-favorites-itzikgabay.vercel.app/api/restaurants',
-    );
+    const response: AxiosResponse = await axios.get(API_URL);
     return response.data.data;
   }
 };
 
 export const getRestaurant = async (name: string) => {
-  const baseURL: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
-  const response: AxiosResponse = await axios.get(`${baseURL}/${name}`);
+  const response: AxiosResponse = await axios.get(`${WOLT_API}/${name}`);
   return response.data;
 };
 
