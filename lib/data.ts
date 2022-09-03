@@ -4,9 +4,9 @@ import axios, { AxiosResponse } from 'axios';
 export const fetchRestaurants = async () => {
   const env: string = process.env.NODE_ENV;
 
-  if (env == 'development') {
+  if (env === 'development') {
     return sampleData;
-  } else if (env == 'production') {
+  } else if (env === 'production') {
     const response: AxiosResponse = await axios.get(
       'http://localhost:3000/api/restaurants',
     );

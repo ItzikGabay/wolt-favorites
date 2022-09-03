@@ -17,7 +17,7 @@ interface ICardProps {
 
 const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
   const cards = data.map((card: ICardProps) => {
-    if (card.results != null) {
+    if (card.results !== null) {
       card = card.results[0];
       return (
         <CardItem
