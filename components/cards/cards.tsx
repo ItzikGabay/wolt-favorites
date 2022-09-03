@@ -14,6 +14,7 @@ interface ICardProps {
   online: string;
   key: object | string | undefined;
   slug: string;
+  listimage: string;
 }
 
 const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
@@ -26,6 +27,7 @@ const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
           slug={card.slug}
           name={card.name[1].value}
           address={card.address}
+          image={card.listimage}
           price={15}
           time={card.completion_estimates.delivery_rush}
           online={card.online}
