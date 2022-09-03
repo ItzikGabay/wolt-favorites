@@ -13,6 +13,7 @@ interface ICardProps {
   completion_estimates: { delivery_rush: string };
   online: string;
   key: object | string | undefined;
+  slug: string;
 }
 
 const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
@@ -22,6 +23,7 @@ const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
       return (
         <CardItem
           key={card.name[1].value}
+          slug={card.slug}
           name={card.name[1].value}
           address={card.address}
           price={15}
