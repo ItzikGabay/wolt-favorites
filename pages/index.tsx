@@ -3,8 +3,7 @@ import styles from '../styles/pages/home.module.scss';
 import Navbar from '../components/navbar/navbar';
 import Cards from '../components/cards/cards';
 import Title from '../components/title/title';
-import axios from 'axios';
-import sampleData from '../sample-data.json';
+import { fetchRestaurants } from '../lib/data';
 
 interface IHomeProps {
   data: object;
@@ -28,19 +27,12 @@ const Home: NextPage<IHomeProps> = ({ data, error }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  let error = false;
-  // const response = await axios.get('http://localhost:3000/api/restaurants');
-  // const data = response.data.data;
-  const data: any = sampleData;
-
-  if (!Array.isArray(data) || !data?.length) {
-    error = true;
-  }
+  const data = await fetchRestaurants();
 
   return {
     props: {
       data,
-      error,
+      error: !Array.isArray(data) || !data?.length,
     },
   };
 };

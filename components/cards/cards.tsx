@@ -21,7 +21,7 @@ const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
       card = card.results[0];
       return (
         <CardItem
-          key={card.name}
+          key={card.name[1].value}
           name={card.name[1].value}
           address={card.address}
           price={15}
