@@ -9,13 +9,14 @@
   padding: $navbar-padding;
   font-weight: 700;
   align-items: center;
+  font-size: 13px;
 }
 
 .search {
   border: none;
   background-color: rgba(0,0,0,0.1);
   height: 30px;
-  width: 220px;
+  width: 50%;
   border-radius: 24px;
   padding: 0 15px;
 

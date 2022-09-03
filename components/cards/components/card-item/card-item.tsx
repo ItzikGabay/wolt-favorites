@@ -22,22 +22,27 @@ const CardItem: FunctionComponent<ICardProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <div
-        className={styles.rest_image}
-        style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")',
-        }}></div>
-      <div className={styles.content}>
+      <header className={styles.header}>
+        <div
+          className={`${styles.rest_image} ${!online && styles.closed}`}
+          style={{
+            backgroundImage:
+              'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")',
+          }}>
+          <div className={styles.get_online}>
+            <button>Get Online</button>
+          </div>
+        </div>
+      </header>
+      <main className={styles.content}>
         <div className={styles.title}>{name}</div>
         <div className={styles.subtitle}>{address}</div>
-        <div className={styles.subtitle}>{online ? 'ONLINE' : 'OFFLINE'}</div>
-      </div>
-      <div className={styles.footer}>
+      </main>
+      <footer className={styles.footer}>
         {showPrice && <div>₪{15}</div>}
         <span>&#183;</span>
         {showTime && <div>{'30-40'} min</div>}
-      </div>
+      </footer>
     </div>
   );
 };
