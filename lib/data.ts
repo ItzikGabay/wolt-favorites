@@ -7,7 +7,9 @@ export const fetchRestaurants = async () => {
   if (env === 'development') {
     return sampleData;
   } else if (env === 'production') {
-    const response: AxiosResponse = await axios.get('/api/restaurants');
+    const response: AxiosResponse = await axios.get(
+      'https://itzik-wolt-favorites-itzikgabay.vercel.app/api/restaurants',
+    );
     return response.data.data;
   }
 };
