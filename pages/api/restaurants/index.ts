@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getRestaurant, getRestaurants } from '../../../lib/data';
+import { sendErrorResponse, sendSuccessResponse } from '../../../lib/response';
 
 const defaultRestaurants: string[] = ['vitrina', 'super-pizza-tlv'];
 
@@ -11,14 +12,14 @@ export default async function handler(
     const ids: string[] = req.body.ids;
 
     if (!Array.isArray(ids) || !ids.length) {
-      return res.status(500).json({
-        status: 'error',
-        message: "'ids' value is not type of array or not having any items.",
-      });
+      return sendErrorResponse(
+        res,
+        "'ids' value is not type of array or not having any items.",
+      );
     }
     const response = await getRestaurants(ids);
-    return res.status(200).json({ data: response, status: 'success' });
+    sendSuccessResponse(res, null, 200, response);
   }
   const response = await getRestaurants(defaultRestaurants);
-  return res.status(200).json({ data: response, status: 'success' });
+  sendSuccessResponse(res, null, 200, response);
 }
