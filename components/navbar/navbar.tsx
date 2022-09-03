@@ -1,4 +1,4 @@
-import styles from './navbar.module.scss'
+import styles from './navbar.module.scss';
 
 const Navbar = () => {
   return (
@@ -10,7 +10,7 @@ const Navbar = () => {
         className={styles.search}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,14 +1,19 @@
-import type { NextPage } from 'next'
-import styles from '../styles/pages/home.module.scss'
-import Navbar from '../components/navbar/navbar'
-import Cards from '../components/cards/cards'
-import Title from '../components/title/title'
-import axios from 'axios'
-import sampleData from '../sample-data.json'
+import type { GetServerSideProps, NextPage } from 'next';
+import styles from '../styles/pages/home.module.scss';
+import Navbar from '../components/navbar/navbar';
+import Cards from '../components/cards/cards';
+import Title from '../components/title/title';
+import axios from 'axios';
+import sampleData from '../sample-data.json';
 
-const Home: NextPage = ({ data, error }) => {
+interface IHomeProps {
+  data: object;
+  error: boolean | string;
+}
+
+const Home: NextPage<IHomeProps> = ({ data, error }) => {
   if (error) {
-    return <div>Error occurred.</div>
+    return <div>Error occurred.</div>;
   }
 
   return (
@@ -17,19 +22,19 @@ const Home: NextPage = ({ data, error }) => {
       <Title label="What's Itzik Loves.." />
       <Cards data={data} />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
-export async function getServerSideProps(context) {
-  let error = false
+export const getServerSideProps: GetServerSideProps = async context => {
+  let error = false;
   // const response = await axios.get('http://localhost:3000/api/restaurants');
   // const data = response.data.data;
-  const data = sampleData
+  const data: any = sampleData;
 
   if (!Array.isArray(data) || !data?.length) {
-    error = true
+    error = true;
   }
 
   return {
@@ -37,5 +42,5 @@ export async function getServerSideProps(context) {
       data,
       error,
     },
-  }
-}
+  };
+};

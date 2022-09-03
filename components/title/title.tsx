@@ -1,12 +1,12 @@
-import styles from './title.module.scss'
-import { FunctionComponent } from 'react'
+import styles from './title.module.scss';
+import { FunctionComponent } from 'react';
 
 interface ITitleProps {
-  label: any
+  label: any;
 }
 
 const Title: FunctionComponent<ITitleProps> = ({ label }) => {
-  return <h1 className={styles.container}>{label}</h1>
-}
+  return <h1 className={styles.container}>{label}</h1>;
+};
 
-export default Title
+export default Title;
