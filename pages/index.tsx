@@ -3,31 +3,40 @@ import styles from '../styles/pages/home.module.scss';
 import Navbar from '../components/navbar/navbar';
 import Cards from '../components/cards/cards';
 import Title from "../components/title/title";
+import axios from 'axios';
+import sampleData from '../sample-data.json';
 import useFetch from "../hooks/useFetch";
 
-const Home: NextPage = () => {
-    const { data, loading, error } = useFetch('/api/restaurants');
-    // const { data, loading, error } = useFetch('/api/fsdfsd');
-
-    if(loading) {
-        return <div>"Loading.."</div>
-    }
-
+const Home: NextPage = ({data, error}) => {
     if(error) {
-        return <div>error</div>
+        return <div>Error occurred.</div>
     }
 
-    // [0].results
-    const cards = data && data.data;
-
-  return (
+    return (
     <div className={styles.container}>
         <Navbar/>
         <Title label="What's Itzik Loves.."/>
-        <Cards data={cards} />
-        {/*{JSON.stringify(data)}*/}
+        <Cards data={data} />
     </div>
-  )
+    )
 }
 
 export default Home;
+
+export async function getServerSideProps(context) {
+    let error = false;
+    // const response = await axios.get('http://localhost:3000/api/restaurants');
+    // const data = response.data.data;
+    const data = sampleData;
+
+    if(!Array.isArray(data) || !data?.length) {
+        error = true;
+    }
+
+    return {
+        props: {
+            data,
+            error
+        },
+    }
+}
