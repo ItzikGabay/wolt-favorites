@@ -2,7 +2,14 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getRestaurant, getRestaurants } from '../../../lib/data';
 import { sendErrorResponse, sendSuccessResponse } from '../../../lib/response';
 
-const defaultRestaurants: string[] = ['vitrina', 'super-pizza-tlv'];
+const defaultRestaurants: string[] = [
+  'vitrina',
+  'super-pizza-tlv',
+  'under-the-tree',
+  'hamosad',
+  'night-cookie',
+  'knaffex-ibn-gvirol',
+];
 
 export default async function handler(
   req: NextApiRequest,
