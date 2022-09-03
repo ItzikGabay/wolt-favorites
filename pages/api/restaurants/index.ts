@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios, {AxiosResponse} from 'axios';
 
-const defaultRestaurants: string[] = ['vitrina'];
+const defaultRestaurants: string[] = ['vitrina', 'super-pizza-tlv'];
 
 const getRestaurant = async (name: string) => {
     const baseURL: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
