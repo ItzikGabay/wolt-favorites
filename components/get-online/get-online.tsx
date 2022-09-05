@@ -13,24 +13,28 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
   isActive = false,
 }) => {
   const [isOnline, setIsOnline] = useState(false);
-  const [tryNum, setTryNum] = useState(0);
+  const [tryNum, setTryNum] = useState(1);
   const [inProcess, setInProcess] = useState(isActive);
 
   const [play] = useSound('/laugh.mp3');
 
+  const reFetch = () => {
+    setTimeout(() => {
+      fetchRestaurants([id]).then(res => {
+        const onlineResult = res[0].results[0].online;
+        setIsOnline(onlineResult);
+        if (!!onlineResult) {
+          play();
+        } else {
+          setTryNum(prevState => prevState + 1);
+        }
+      });
+    }, 3000);
+  };
+
   useEffect(() => {
     if (!isOnline && inProcess) {
-      setTimeout(() => {
-        fetchRestaurants([id]).then(res => {
-          const onlineResult = res[0].results[0].online;
-          setIsOnline(onlineResult);
-          if (!!onlineResult) {
-            play();
-          } else {
-            setTryNum(prevState => prevState + 1);
-          }
-        });
-      }, 3000);
+      reFetch();
     } else {
       setInProcess(false);
     }
@@ -41,7 +45,7 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
       className={`${styles.container} ${inProcess && styles.active}`}
       onClick={() => setInProcess(true)}
       disabled={inProcess}>
-      {inProcess ? 'Fetching.. 🫣' : 'Get online 🐹'}
+      {inProcess ? `Getting online (${tryNum}x) 🫣` : 'Get online 🐹'}
     </button>
   );
 };
