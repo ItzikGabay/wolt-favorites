@@ -1,7 +1,6 @@
 import styles from './card-item.module.scss';
 import { FunctionComponent, useEffect } from 'react';
 import GetOnline from '../../../get-online/get-online';
-import { useRouter } from 'next/router';
 
 interface ICardProps {
   price: number;
@@ -26,13 +25,18 @@ const CardItem: FunctionComponent<ICardProps> = ({
   showTime = true,
   image,
 }) => {
-  const router = useRouter();
 
+  // Whenever user clicking on button "Order With Itzik",
+  // We're sending the user to the endpoint of Whatsapp API.
   const onClickOrderWith = async () => {
     const link = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}?text=`;
-    const message = encodeURIComponent(`Pleaseeee order with me ${name}!`);
-    const url = `${link}${message}`;
-    await router.push(link);
+    const message = `Pleaseeee order with me ${name}!`;
+
+    // In order to support URL encoding, we're using encodeURIComponent.
+    const messageEncoded = encodeURIComponent(message);
+    const endpoint = `${link}${messageEncoded}`;
+
+    window.open(endpoint, '_blank');
   };
 
   return (
@@ -58,9 +62,9 @@ const CardItem: FunctionComponent<ICardProps> = ({
         </div>
       </main>
       <footer className={styles.footer}>
-        {showPrice && <div>₪{15}</div>}
+        {showPrice && <div>₪{price}</div>}
         <span>&#183;</span>
-        {showTime && <div>{'30-40'} min</div>}
+        {showTime && <div>{time} min</div>}
       </footer>
     </div>
   );
