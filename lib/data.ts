@@ -6,7 +6,7 @@ const WOLT_API: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
 const BASE_URL: string =
   env === 'development'
     ? 'http://localhost:3000'
-    : 'https://itzik-wolt-favorites-itzikgabay.vercel.app';
+    : '';
 
 const API_URL: string = `${BASE_URL}/api/restaurants`;
 
