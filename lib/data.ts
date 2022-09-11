@@ -1,6 +1,10 @@
 import sampleData from '../sample-data.json';
 import axios, { AxiosResponse } from 'axios';
 
+interface Restaurant {
+  results: Array;
+}
+
 const env: string = process.env.NODE_ENV;
 const WOLT_API: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
 const BASE_URL: string =
@@ -12,8 +16,6 @@ const API_URL: string = `${BASE_URL}/api/restaurants`;
 
 export const fetchRestaurants = async (ids?: string[]) => {
   if (env === 'development') {
-    return sampleData;
-  } else if (env === 'production') {
     if (Array.isArray(ids)) {
       const response: AxiosResponse = await axios.post(API_URL, JSON.stringify({ ids }));
       return response.data.data;
@@ -37,6 +39,11 @@ export const getRestaurants = async (ids: string[]) => {
     const item: object = await getRestaurant(name);
     items.push(item);
   }
+
+  // TODO: Add type to item
+  items.sort((a: any, b: any): number => {
+    return b.results[0].online - a.results[0].online;
+  });
 
   return items;
 };
