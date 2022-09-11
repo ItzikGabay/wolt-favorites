@@ -4,7 +4,13 @@ import { sendErrorResponse, sendSuccessResponse } from '../../../lib/response';
 
 const defaultRestaurants: string[] = [
   'vitrina',
+  'vitrina-ibn-gvirol',
+  'gdb',
+  'prozdor-burger',
   'super-pizza-tlv',
+  'roll-n-roll-sushi-sarona',
+  'philadelphia',
+  'tal-bagels',
   'under-the-tree',
   'hamosad',
   'night-cookie',
