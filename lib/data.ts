@@ -12,6 +12,8 @@ const API_URL: string = `${BASE_URL}/api/restaurants`;
 
 export const fetchRestaurants = async (ids?: string[]) => {
   if (env === 'development') {
+    return sampleData;
+  } else if (env === 'production') {
     if (Array.isArray(ids)) {
       const response: AxiosResponse = await axios.post(API_URL, JSON.stringify({ ids }));
       return response.data.data;
