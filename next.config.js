@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+
   sassOptions: {
     additionalData: '@import "styles/main.scss";',
   },
@@ -14,6 +15,14 @@ const nextConfig = {
     });
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3000/:path*'
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;
