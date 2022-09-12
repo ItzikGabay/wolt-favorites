@@ -15,7 +15,10 @@ export const fetchRestaurants = async (ids?: string[]) => {
     return sampleData;
   } else if (env === 'production') {
     if (Array.isArray(ids)) {
-      const response: AxiosResponse = await axios.post(API_URL, JSON.stringify({ ids }));
+      const response: AxiosResponse = await axios.post(
+        API_URL,
+        JSON.stringify({ ids }),
+      );
       return response.data.data;
     }
 

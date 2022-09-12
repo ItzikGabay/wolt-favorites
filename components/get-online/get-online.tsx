@@ -24,7 +24,8 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
         const onlineResult = res[0].results[0].online;
         setIsOnline(onlineResult);
         if (!!onlineResult) {
-          play();
+          // console.debug('[debug] ->', onlineResult);
+          // play();
         } else {
           setTryNum(prevState => prevState + 1);
         }
