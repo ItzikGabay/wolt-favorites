@@ -1,10 +1,6 @@
 import sampleData from '../sample-data.json';
 import axios, { AxiosResponse } from 'axios';
 
-interface Restaurant {
-  results: Array;
-}
-
 const env: string = process.env.NODE_ENV;
 const WOLT_API: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
 const BASE_URL: string =
