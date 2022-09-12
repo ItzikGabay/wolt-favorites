@@ -11,9 +11,8 @@ const BASE_URL: string =
 const API_URL: string = `${BASE_URL}/api/restaurants`;
 
 export const fetchRestaurants = async (ids?: string[]) => {
-  if (env === 'development') {
-    return sampleData;
-  } else if (env === 'production') {
+  // @ts-ignore
+  if (env === 'production' || process.env.NEXT_PUBLIC_DEBUG === '1' ) {
     if (Array.isArray(ids)) {
       const response: AxiosResponse = await axios.post(
         API_URL,
@@ -25,6 +24,8 @@ export const fetchRestaurants = async (ids?: string[]) => {
     const response: AxiosResponse = await axios.get(API_URL);
     return response.data.data;
   }
+
+  return sampleData;
 };
 
 export const getRestaurant = async (name: string) => {
@@ -32,12 +33,14 @@ export const getRestaurant = async (name: string) => {
   return response.data;
 };
 
+
 export const getRestaurants = async (ids: string[]) => {
   const items: object[] = [];
 
   for (let idx in ids) {
     const name: string = ids[idx];
     const item: object = await getRestaurant(name);
+    console.debug('[debug] -> item', item);
     items.push(item);
   }
 
