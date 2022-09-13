@@ -21,11 +21,10 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
   const reFetch = () => {
     setTimeout(() => {
       fetchRestaurants([id]).then(res => {
-        const onlineResult = res[0].results[0].online;
+        const onlineResult = res[0].online;
         setIsOnline(onlineResult);
         if (!!onlineResult) {
-          // console.debug('[debug] ->', onlineResult);
-          // play();
+          play();
         } else {
           setTryNum(prevState => prevState + 1);
         }
@@ -38,15 +37,15 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
       reFetch();
     } else {
       setInProcess(false);
+      setTryNum(1);
     }
   }, [tryNum, inProcess]);
 
   return (
     <button
       className={`${styles.container} ${inProcess && styles.active}`}
-      onClick={() => setInProcess(true)}
-      disabled={inProcess}>
-      {inProcess ? `Getting online (${tryNum}x) 🫣` : 'Get online 🐹'}
+      onClick={() => inProcess ? setInProcess(false) : setInProcess(true)}>
+      {inProcess ? `Looking.. (${tryNum}x)` : 'Get online 🐹'}
     </button>
   );
 };

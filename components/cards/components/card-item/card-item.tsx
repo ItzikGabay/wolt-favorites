@@ -48,7 +48,7 @@ const CardItem: FunctionComponent<ICardProps> = ({
             backgroundImage: `url("${image}")`,
           }}>
           <div className={styles.get_online}>
-            {!online && <GetOnline id={name} />}
+            {!online && <GetOnline id={slug} />}
           </div>
         </div>
       </header>

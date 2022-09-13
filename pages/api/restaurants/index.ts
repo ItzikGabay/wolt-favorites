@@ -31,7 +31,7 @@ export default async function handler(
       );
     }
     const response = await getRestaurants(ids);
-    sendSuccessResponse(res, null, 200, response);
+    return sendSuccessResponse(res, null, 200, response);
   }
   const response = await getRestaurants(defaultRestaurants);
   sendSuccessResponse(res, null, 200, response);
