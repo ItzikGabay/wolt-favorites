@@ -1,26 +1,16 @@
 import styles from './cards.module.scss';
 import CardItem from './components/card-item/card-item';
 import { FunctionComponent } from 'react';
+import {RestaurantProps} from "../../interfaces/Restaurant";
 
 interface ICardsProps {
   data: any;
 }
 
-interface ICardProps {
-  results: any[] | null;
-  name: any;
-  address: string;
-  completion_estimates: { delivery_rush: string };
-  online: string;
-  key: object | string | undefined;
-  slug: string;
-  listimage: string;
-}
 
 const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
-  const cards = data.map((card: ICardProps) => {
-    if (card.results !== null) {
-      card = card.results[0];
+  const cards = data.map((card: RestaurantProps) => {
+    if (card !== null) {
       return (
         <CardItem
           key={card.name[1].value}
