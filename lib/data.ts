@@ -40,6 +40,7 @@ export const getRestaurant = async (name: string) => {
     key: restaurant.key,
     slug: restaurant.slug,
     listimage: restaurant.listimage,
+    categories: restaurant.categories,
   }
 
   return restaurantMapped;
@@ -48,14 +49,25 @@ export const getRestaurant = async (name: string) => {
 
 export const getRestaurants = async (ids: string[]) => {
   const items: object[] = [];
+  const categories: object[] = [];
 
   for (let idx in ids) {
     const name: string = ids[idx];
     const item: RestaurantProps = await getRestaurant(name);
+
+    item.categories.forEach((category) => {
+      if (!categories.includes(category.name)) {
+        categories.push(category.name);
+      }
+    });
+
     items.push(item);
   }
 
-  // TODO: Add type to item
+  // TODO -> add sort by categories
+  console.debug('[debug] -> categories', categories);
+
+  // TODO-> Add type to item
   items.sort((a: any, b: any): number => {
     return b.online - a.online;
   });

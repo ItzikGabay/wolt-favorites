@@ -58,7 +58,7 @@ const CardItem: FunctionComponent<ICardProps> = ({
           <div className={styles.subtitle}>{address}</div>
         </div>
         <div className={styles.order_with_me} onClick={onClickOrderWith}>
-          Order with Itzik
+          Tell Itzik Now!
         </div>
       </main>
       <footer className={styles.footer}>

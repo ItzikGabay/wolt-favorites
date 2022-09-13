@@ -19,7 +19,7 @@ const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
           address={card.address}
           image={card.listimage}
           price={15}
-          time={card.completion_estimates.delivery_rush}
+          time={card.completion_estimates}
           online={card.online}
         />
       );
