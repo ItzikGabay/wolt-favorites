@@ -4,6 +4,7 @@ import Navbar from '../components/navbar/navbar';
 import Cards from '../components/cards/cards';
 import Title from '../components/title/title';
 import { fetchRestaurants } from '../lib/data';
+import {useState, useEffect} from "react";
 
 interface IHomeProps {
   data: object;
@@ -11,15 +12,24 @@ interface IHomeProps {
 }
 
 const Home: NextPage<IHomeProps> = ({ data, error }) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredData, setFilteredData] = useState(data);
+
+useEffect(() => {
+  if(!!searchValue) {
+    setFilteredData(data.filter((item) => item.name[0].value.toLowerCase().includes(searchValue) || item.name[1].value.includes(searchValue)))
+  }
+}, [searchValue])
+
   if (error) {
     return <div>Error occurred.</div>;
   }
 
   return (
     <div className={styles.container}>
-      <Navbar />
+      <Navbar searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Title label="What's Itzik Loves.." />
-      <Cards data={data} />
+      <Cards data={searchValue ? filteredData : data} />
     </div>
   );
 };
