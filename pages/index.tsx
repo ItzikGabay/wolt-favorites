@@ -28,7 +28,7 @@ useEffect(() => {
   return (
     <div className={styles.container}>
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue}/>
-      <Title label="What's Itzik Loves.." />
+      <Title label="The Best if itzik" />
       <Cards data={searchValue ? filteredData : data} />
     </div>
   );
