@@ -25,11 +25,14 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
         setIsOnline(onlineResult);
         if (!!onlineResult) {
           play();
+          setIsOnline(true);
+          setInProcess(false);
+          setTryNum(1);
         } else {
           setTryNum(prevState => prevState + 1);
         }
       });
-    }, 3000);
+    }, 5000);
   };
 
   useEffect(() => {
