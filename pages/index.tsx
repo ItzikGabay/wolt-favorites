@@ -5,9 +5,10 @@ import Cards from '../components/cards/cards';
 import Title from '../components/title/title';
 import { fetchRestaurants } from '../lib/data';
 import {useState, useEffect} from "react";
+import {RestaurantProps} from "../interfaces/Restaurant";
 
 interface IHomeProps {
-  data: object;
+  data: RestaurantProps[];
   error: boolean | string;
 }
 
@@ -17,7 +18,8 @@ const Home: NextPage<IHomeProps> = ({ data, error }) => {
 
 useEffect(() => {
   if(!!searchValue) {
-    setFilteredData(data.filter((item) => item.name[0].value.toLowerCase().includes(searchValue) || item.name[1].value.includes(searchValue)))
+    const filteredItems = data.filter((item) => item.name[0].value.toLowerCase().includes(searchValue) || item.name[1].value.includes(searchValue));
+    setFilteredData(filteredItems);
   }
 }, [searchValue])
 
