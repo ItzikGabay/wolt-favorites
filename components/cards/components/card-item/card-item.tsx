@@ -25,7 +25,6 @@ const CardItem: FunctionComponent<ICardProps> = ({
   showTime = true,
   image,
 }) => {
-
   // Whenever user clicking on button "Order With Itzik",
   // We're sending the user to the endpoint of Whatsapp API.
   const onClickOrderWith = async () => {

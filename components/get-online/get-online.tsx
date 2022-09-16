@@ -47,7 +47,7 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
   return (
     <button
       className={`${styles.container} ${inProcess && styles.active}`}
-      onClick={() => inProcess ? setInProcess(false) : setInProcess(true)}>
+      onClick={() => (inProcess ? setInProcess(false) : setInProcess(true))}>
       {inProcess ? `Looking.. (${tryNum}x)` : 'Get online 🐹'}
     </button>
   );

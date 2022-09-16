@@ -12,12 +12,9 @@ const BASE_URL: string =
 const API_URL: string = `${BASE_URL}/api/restaurants`;
 
 export const fetchRestaurants = async (ids?: string[]) => {
-  if (ENVIRONMENT === 'production' || process.env.NEXT_PUBLIC_DEBUG === '1' ) {
+  if (ENVIRONMENT === 'production' || process.env.NEXT_PUBLIC_DEBUG === '1') {
     if (Array.isArray(ids)) {
-      const response: AxiosResponse = await axios.post(
-        API_URL,
-        { ids },
-      );
+      const response: AxiosResponse = await axios.post(API_URL, { ids });
       return response.data.data;
     }
 
@@ -41,11 +38,10 @@ export const getRestaurant = async (name: string) => {
     slug: restaurant.slug,
     listimage: restaurant.listimage,
     categories: restaurant.categories,
-  }
+  };
 
   return restaurantMapped;
 };
-
 
 export const getRestaurants = async (ids: string[]) => {
   const items: object[] = [];
@@ -55,7 +51,7 @@ export const getRestaurants = async (ids: string[]) => {
     const name: string = ids[idx];
     const item: RestaurantProps = await getRestaurant(name);
 
-    item.categories.forEach((category) => {
+    item.categories.forEach(category => {
       if (!categories.includes(category.name)) {
         categories.push(category.name);
       }

@@ -1,12 +1,11 @@
 import styles from './cards.module.scss';
 import CardItem from './components/card-item/card-item';
 import { FunctionComponent } from 'react';
-import {RestaurantProps} from "../../interfaces/Restaurant";
+import { RestaurantProps } from '../../interfaces/Restaurant';
 
 interface ICardsProps {
   data: any;
 }
-
 
 const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
   const cards = data.map((card: RestaurantProps) => {
