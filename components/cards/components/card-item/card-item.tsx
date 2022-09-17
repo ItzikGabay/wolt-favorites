@@ -1,5 +1,5 @@
 import styles from './card-item.module.scss';
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import GetOnline from '../../../get-online/get-online';
 
 interface ICardProps {
@@ -25,6 +25,8 @@ const CardItem: FunctionComponent<ICardProps> = ({
   showTime = true,
   image,
 }) => {
+  const [isOnline, setIsOnline] = useState(online);
+
   // Whenever user clicking on button "Order With Itzik",
   // We're sending the user to the endpoint of Whatsapp API.
   const onClickOrderWith = async () => {
@@ -42,12 +44,18 @@ const CardItem: FunctionComponent<ICardProps> = ({
     <div className={styles.container}>
       <header className={styles.header}>
         <div
-          className={`${styles.rest_image} ${!online && styles.closed}`}
+          className={`${styles.rest_image} ${!isOnline && styles.closed}`}
           style={{
             backgroundImage: `url("${image}")`,
           }}>
           <div className={styles.get_online}>
-            {!online && <GetOnline id={slug} />}
+            {!isOnline && (
+              <GetOnline
+                id={slug}
+                isOnline={isOnline}
+                setIsOnline={setIsOnline}
+              />
+            )}
           </div>
         </div>
       </header>

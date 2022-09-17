@@ -6,13 +6,16 @@ import useSound from 'use-sound';
 interface ITitleProps {
   id: string;
   isActive?: boolean;
+  isOnline: string | boolean;
+  setIsOnline: (isOnline: any) => void | any;
 }
 
 const GetOnline: FunctionComponent<ITitleProps> = ({
   id,
   isActive = false,
+  isOnline,
+  setIsOnline,
 }) => {
-  const [isOnline, setIsOnline] = useState(false);
   const [tryNum, setTryNum] = useState(1);
   const [inProcess, setInProcess] = useState(isActive);
 
