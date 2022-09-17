@@ -17,11 +17,12 @@ const Home: NextPage<IHomeProps> = ({ data, error }) => {
   const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {
-    if (!!searchValue) {
+    if (!!searchValue && !!data.length) {
       const filteredItems = data.filter(
         item =>
-          item.name[0].value.toLowerCase().includes(searchValue) ||
-          item.name[1].value.includes(searchValue),
+          (item.name &&
+            item.name[0].value.toLowerCase().includes(searchValue)) ||
+          (item.name && item.name[1].value.includes(searchValue)),
       );
       setFilteredData(filteredItems);
     }
@@ -34,7 +35,7 @@ const Home: NextPage<IHomeProps> = ({ data, error }) => {
   return (
     <div className={styles.container}>
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
-      <Title label="The Best if itzik" />
+      <Title label="The Best Restaurants of itzik:" />
       <Cards data={searchValue ? filteredData : data} />
     </div>
   );
