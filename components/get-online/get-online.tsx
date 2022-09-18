@@ -2,6 +2,7 @@ import styles from './get-online.module.scss';
 import { FunctionComponent, useEffect, useState } from 'react';
 import { fetchRestaurants } from '../../lib/data';
 import useSound from 'use-sound';
+import translations from '../../lib/translations';
 
 interface ITitleProps {
   id: string;
@@ -51,7 +52,9 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
     <button
       className={`${styles.container} ${inProcess && styles.active}`}
       onClick={() => (inProcess ? setInProcess(false) : setInProcess(true))}>
-      {inProcess ? `Looking.. (${tryNum}x)` : 'Get online 🐹'}
+      {inProcess
+        ? `${translations.get_restaurant_active} (${tryNum}x)`
+        : translations.get_restaurant_online}
     </button>
   );
 };

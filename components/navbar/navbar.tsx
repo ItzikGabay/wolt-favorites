@@ -1,5 +1,6 @@
 import styles from './navbar.module.scss';
 import { FunctionComponent } from 'react';
+import translations from '../../lib/translations';
 
 interface INavbarProps {
   searchValue: string;
@@ -12,12 +13,12 @@ const Navbar: FunctionComponent<INavbarProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <div>Itzik Favorites</div>
+      <div>{translations.title}</div>
       <input
         type="text"
         value={searchValue}
         onChange={e => setSearchValue(e.target.value)}
-        placeholder="Search in Itzik Favorites"
+        placeholder={translations.search_placeholder}
         className={styles.search}
       />
     </div>

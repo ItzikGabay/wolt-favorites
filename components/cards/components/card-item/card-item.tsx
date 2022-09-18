@@ -1,6 +1,7 @@
 import styles from './card-item.module.scss';
 import { FunctionComponent, useEffect, useState } from 'react';
 import GetOnline from '../../../get-online/get-online';
+import translations from '../../../../lib/translations';
 
 interface ICardProps {
   price: number;
@@ -31,7 +32,7 @@ const CardItem: FunctionComponent<ICardProps> = ({
   // We're redirecting the user to the endpoint of sending message WhatsappAPI.
   const onClickOrderWith = async () => {
     const link = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}?text=`;
-    const message = `Pleaseeee order with me ${name}!`;
+    const message = `${translations.order_together_message} ${name}!`;
 
     // In order to support URL encoding, we're using encodeURIComponent.
     const messageEncoded = encodeURIComponent(message);
@@ -65,7 +66,7 @@ const CardItem: FunctionComponent<ICardProps> = ({
           <div className={styles.subtitle}>{address}</div>
         </div>
         <div className={styles.order_with_me} onClick={onClickOrderWith}>
-          Send Itzik Message!
+          {translations.send_invite_button}
         </div>
       </main>
       <footer className={styles.footer}>

@@ -2,6 +2,7 @@ import styles from './cards.module.scss';
 import CardItem from './components/card-item/card-item';
 import { FunctionComponent } from 'react';
 import { RestaurantProps } from '../../interfaces/Restaurant';
+import translations from '../../lib/translations';
 
 interface ICardsProps {
   data: RestaurantProps[];
@@ -30,7 +31,7 @@ const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
   const renderCards = !!cards.length ? (
     cards
   ) : (
-    <p>Sorry. No restaurants found. Please try again later.</p>
+    <p>{translations.no_restaurant_found}</p>
   );
 
   return <div className={styles.container}>{renderCards}</div>;
