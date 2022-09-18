@@ -7,6 +7,7 @@ import { fetchRestaurants } from '../lib/data';
 import { useState, useEffect } from 'react';
 import { RestaurantProps } from '../interfaces/Restaurant';
 import { CategoryProps } from '../interfaces/Category';
+import Categories from '../components/categories/categories';
 
 interface IHomeProps {
   data: RestaurantProps[];
@@ -50,22 +51,9 @@ const Home: NextPage<IHomeProps> = ({ data, error, categories }) => {
   return (
     <div className={styles.container}>
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Categories categories={categories} setCategory={setCategory} />
       <Title label="The Best Restaurants of itzik:" />
       <Cards data={searchValue || category ? filteredData : data} />
-      <form>
-        {categories.map((category, index) => (
-          <div key={index}>
-            <input
-              type="radio"
-              id={index.toString()}
-              name="category"
-              value={category}
-              onChange={() => setCategory(category)}
-            />
-            <label htmlFor={index.toString()}>{category}</label>
-          </div>
-        ))}
-      </form>
     </div>
   );
 };

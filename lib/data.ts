@@ -2,6 +2,7 @@ import sampleData from '../sample-data.json';
 import axios, { AxiosResponse } from 'axios';
 import { RestaurantProps } from '../interfaces/Restaurant';
 
+const unusedCategories = ['Ice cream', 'Kids meals', 'Kids', 'Mediterranean'];
 const ENVIRONMENT: string = process.env.NODE_ENV;
 const WOLT_API: string = 'https://restaurant-api.wolt.com/v3/venues/slug';
 const BASE_URL: string =
@@ -51,8 +52,12 @@ export const getRestaurants = async (ids: string[]) => {
     const name: string = ids[idx];
     const item: RestaurantProps = await getRestaurant(name);
 
-    item.categories.forEach(category => {
-      if (!categories.includes(category.name)) {
+    // TODO: Add interface for category
+    item.categories.forEach((category: any) => {
+      if (
+        !categories.includes(category.name) &&
+        !unusedCategories.includes(category.name)
+      ) {
         categories.push(category.name);
       }
     });
