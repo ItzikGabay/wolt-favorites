@@ -1,12 +1,12 @@
 import { CategoryProps } from './Category';
 
 export interface RestaurantProps {
-  name: any;
-  address: string;
-  completion_estimates: string;
-  online: string;
   key: object | string | undefined;
-  slug: string;
-  listimage: string;
+  completion_estimates: string;
   categories: CategoryProps[];
+  listimage: string;
+  address: string;
+  online: string;
+  slug: string;
+  name: any;
 }

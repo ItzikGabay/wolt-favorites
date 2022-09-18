@@ -10,6 +10,7 @@ const Categories: FunctionComponent<ICategoriesProps> = ({
   categories,
   setCategory,
 }) => {
+  // TODO: Add a category component
   const renderCategories = categories.map((category, index) => (
     <div
       className={styles.category}

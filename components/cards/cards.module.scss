@@ -2,9 +2,10 @@
   @media screen and (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
-  display: grid;
+
+  padding: 0 $shared-background-padding 40px $shared-background-padding;
   grid-template-columns: 1fr;
+  display: grid;
   width: 100%;
   gap: 10px;
-  padding: 0 $shared-background-padding 40px $shared-background-padding;
 }

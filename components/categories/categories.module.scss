@@ -3,23 +3,24 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 30px 25px 10px 25px;
+  display: grid;
 }
 
 .category {
-  display: flex;
+  transition: all 0.2s ease-in-out;
+  justify-content: center;
+  border: 1px solid #ccc;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 7px;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 0.5rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
   word-break: initial;
+  cursor: pointer;
+  margin: 0.5rem;
+  display: flex;
+  padding: 7px;
+
   &:hover {
     transform: scale(1.05);
   }

@@ -1,72 +1,70 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
   flex: 1;
+  flex-direction: column;
   background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 8px;
-  transition: 0.2s all ease-in-out;
+  box-shadow: $shared-box-shadow;
+  border-radius: $shared-border-radius;
+  transition: $shared-transition;
 
   &:hover {
     scale: 1.02;
-    transition: 0.2s all ease-in-out;
+    transition: $shared-transition;
   }
 
   .rest_image {
-    height: 150px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    position: relative;
+    border-top-left-radius: $shared-border-radius;
+    border-top-right-radius: $shared-border-radius;
     background-size: cover;
+    position: relative;
+    height: 150px;
   }
 
   .closed:after {
-    content:'Closed';
-    font-size: 25px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    color: white;
+    border-top-left-radius: $shared-border-radius;
+    border-top-right-radius: $shared-border-radius;
     background-color: rgba(0,0,0,0.7);
     position: absolute;
-    display: flex;
     justify-content: center;
     align-items: center;
-    top: 0;
-    left: 0;
+    content: 'Closed';
+    font-size: 25px;
+    color: white;
+    display: flex;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
   }
 
   .get_online {
     position: absolute;
     color: white;
-    top: 10px;
-    left: 10px;
     z-index: 1;
+    left: 10px;
+    top: 10px;
   }
 
   .content {
+    justify-content: space-between;
+    column-gap: 10px;
     padding: 15px;
     display: flex;
-    column-gap: 10px;
-    justify-content: space-between;
 
     .order_with_me {
-      width: 80px;
       background-color: rgb(0, 157, 224, 0.2);
-      border-radius: 8px;
-      padding: 8px;
-      font-size: 13px;
-      text-align: center;
-      cursor: pointer;
       transition: 0.3s all ease-in-out;
+      border-radius: 8px;
+      text-align: center;
       font-weight: 400;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 8px;
+      width: 80px;
     }
 
     .order_with_me:hover {
-      scale: 1.05;
       transition: 0.3s all ease-in-out;
+      scale: 1.05;
     }
 
     .subtitle {
@@ -79,10 +77,10 @@
 
 .footer {
   border-top: 1px solid rgba(0,0,0,0.03);
+  color: rgba(0,0,0,0.5);
+  column-gap: 10px;
+  font-weight: 400;
+  font-size: 13px;
   padding: 15px;
   display: flex;
-  column-gap: 10px;
-  color: rgba(0,0,0,0.5);
-  font-size: 13px;
-  font-weight: 400;
 }

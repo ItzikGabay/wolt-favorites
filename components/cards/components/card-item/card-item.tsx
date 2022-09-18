@@ -27,8 +27,8 @@ const CardItem: FunctionComponent<ICardProps> = ({
 }) => {
   const [isOnline, setIsOnline] = useState(online);
 
-  // Whenever user clicking on button "Order With Itzik",
-  // We're sending the user to the endpoint of Whatsapp API.
+  // Whenever user clicking on the button of "Order With",
+  // We're redirecting the user to the endpoint of sending message WhatsappAPI.
   const onClickOrderWith = async () => {
     const link = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}?text=`;
     const message = `Pleaseeee order with me ${name}!`;
@@ -65,7 +65,7 @@ const CardItem: FunctionComponent<ICardProps> = ({
           <div className={styles.subtitle}>{address}</div>
         </div>
         <div className={styles.order_with_me} onClick={onClickOrderWith}>
-          Tell Itzik Now!
+          Send Itzik Message!
         </div>
       </main>
       <footer className={styles.footer}>

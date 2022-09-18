@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react';
 import { RestaurantProps } from '../../interfaces/Restaurant';
 
 interface ICardsProps {
-  data: any;
+  data: RestaurantProps[];
 }
 
 const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
@@ -25,7 +25,7 @@ const Cards: FunctionComponent<ICardsProps> = ({ data }) => {
         );
       }
     })
-    .filter((item: RestaurantProps) => item);
+    .filter(item => item);
 
   const renderCards = !!cards.length ? (
     cards

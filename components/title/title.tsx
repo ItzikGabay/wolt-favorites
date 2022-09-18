@@ -2,7 +2,7 @@ import styles from './title.module.scss';
 import { FunctionComponent, ReactElement } from 'react';
 
 interface ITitleProps {
-  label: any;
+  label: string;
 }
 
 const Title: FunctionComponent<ITitleProps> = ({ label }): ReactElement => {
