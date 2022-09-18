@@ -44,7 +44,7 @@ export const getRestaurant = async (name: string) => {
 };
 
 export const getRestaurants = async (ids: string[]) => {
-  const items: object[] = [];
+  const restaurants: object[] = [];
   const categories: object[] = [];
 
   for (let idx in ids) {
@@ -57,16 +57,13 @@ export const getRestaurants = async (ids: string[]) => {
       }
     });
 
-    items.push(item);
+    restaurants.push(item);
   }
 
-  // TODO -> add sort by categories
-  console.debug('[debug] -> categories', categories);
-
   // TODO-> Add type to item
-  items.sort((a: any, b: any): number => {
+  restaurants.sort((a: any, b: any): number => {
     return b.online - a.online;
   });
 
-  return items;
+  return { restaurants, categories };
 };

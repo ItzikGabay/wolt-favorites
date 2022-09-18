@@ -6,14 +6,17 @@ import Title from '../components/title/title';
 import { fetchRestaurants } from '../lib/data';
 import { useState, useEffect } from 'react';
 import { RestaurantProps } from '../interfaces/Restaurant';
+import { CategoryProps } from '../interfaces/Category';
 
 interface IHomeProps {
   data: RestaurantProps[];
   error: boolean | string;
+  categories: string[];
 }
 
-const Home: NextPage<IHomeProps> = ({ data, error }) => {
+const Home: NextPage<IHomeProps> = ({ data, error, categories }) => {
   const [searchValue, setSearchValue] = useState('');
+  const [category, setCategory] = useState('');
   const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {
@@ -28,6 +31,18 @@ const Home: NextPage<IHomeProps> = ({ data, error }) => {
     }
   }, [searchValue]);
 
+  useEffect(() => {
+    if (!!category && !!data.length) {
+      const filteredItems = data.filter(item => {
+        const itemCategories = item.categories.map(
+          (item: CategoryProps) => item.name,
+        );
+        return itemCategories.includes(category);
+      });
+      setFilteredData(filteredItems);
+    }
+  }, [category]);
+
   if (error) {
     return <div>Error occurred.</div>;
   }
@@ -36,7 +51,21 @@ const Home: NextPage<IHomeProps> = ({ data, error }) => {
     <div className={styles.container}>
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
       <Title label="The Best Restaurants of itzik:" />
-      <Cards data={searchValue ? filteredData : data} />
+      <Cards data={searchValue || category ? filteredData : data} />
+      <form>
+        {categories.map((category, index) => (
+          <div key={index}>
+            <input
+              type="radio"
+              id={index.toString()}
+              name="category"
+              value={category}
+              onChange={() => setCategory(category)}
+            />
+            <label htmlFor={index.toString()}>{category}</label>
+          </div>
+        ))}
+      </form>
     </div>
   );
 };
@@ -48,8 +77,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   return {
     props: {
-      data,
-      error: !Array.isArray(data) || !data?.length,
+      data: data.restaurants || [],
+      categories: data.categories || [],
+      error: !Array.isArray(data.restaurants) || !data.restaurants.length,
     },
   };
 };
