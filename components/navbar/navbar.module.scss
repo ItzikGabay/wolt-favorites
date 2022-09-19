@@ -5,11 +5,13 @@
   padding: $navbar-padding;
   align-items: center;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 18px;
   color: black;
   height: 50px;
   display: flex;
   width: 100%;
+  position: fixed;
+  z-index: 50;
 }
 
 .search {

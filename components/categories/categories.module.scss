@@ -4,7 +4,7 @@
   }
 
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 30px 25px 10px 25px;
+  padding: 60px 25px 10px 25px;
   display: grid;
 }
 
@@ -21,7 +21,12 @@
   display: flex;
   padding: 7px;
 
+  &.active {
+    background-color: rgba(0,0,0,0.05);
+  }
+
   &:hover {
     transform: scale(1.05);
+    background-color: rgba(0,0,0,0.1);
   }
 }

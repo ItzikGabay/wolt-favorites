@@ -51,7 +51,11 @@ const Home: NextPage<IHomeProps> = ({ data, error, categories }) => {
   return (
     <div className={styles.container}>
       <Navbar searchValue={searchValue} setSearchValue={setSearchValue} />
-      <Categories categories={categories} setCategory={setCategory} />
+      <Categories
+        categories={categories}
+        setCategory={setCategory}
+        category={category}
+      />
       <Title label="The Best Restaurants of itzik:" />
       <Cards data={searchValue || category ? filteredData : data} />
     </div>
