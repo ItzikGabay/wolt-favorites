@@ -25,7 +25,8 @@ const GetOnline: FunctionComponent<ITitleProps> = ({
   const reFetch = () => {
     setTimeout(() => {
       fetchRestaurants([id]).then(res => {
-        const onlineResult = res[0].restaurants.online;
+        console.debug('[debug] -> res -> ', res);
+        const onlineResult = res.restaurants[0].online;
         setIsOnline(onlineResult);
         if (!!onlineResult) {
           play();
