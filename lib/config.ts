@@ -6,7 +6,17 @@ const base: string =
 
 export default {
   WOLT_API: 'https://restaurant-api.wolt.com/v3/venues/slug',
-  unusedCategories: ['Ice cream', 'Kids meals', 'Kids', 'Mediterranean'],
+  unusedCategories: [
+    'Ice cream',
+    'Kids meals',
+    'Kids',
+    'Mediterranean',
+    'Ice Cream',
+    'Street Food',
+    'Asian',
+    'Japanese',
+    'American',
+  ],
   API_URL: `${base}/api/restaurants`,
   ENVIRONMENT,
 };

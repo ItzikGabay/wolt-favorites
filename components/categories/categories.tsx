@@ -20,7 +20,9 @@ const Categories: FunctionComponent<ICategoriesProps> = ({
       }`}
       key={index}
       onClick={() =>
-        !!category ? setCategory('') : setCategory(itemCategory)
+        !!category
+          ? setCategory(itemCategory === category ? '' : itemCategory)
+          : setCategory(itemCategory)
       }>
       {itemCategory}
     </div>
