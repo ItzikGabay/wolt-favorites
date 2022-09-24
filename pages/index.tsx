@@ -20,26 +20,46 @@ const Home: NextPage<IHomeProps> = ({ data, error, categories }) => {
   const [category, setCategory] = useState('');
   const [filteredData, setFilteredData] = useState(data);
 
-  useEffect(() => {
-    if (!!searchValue && !!data.length) {
-      const filteredItems = data.filter(
-        item =>
-          (item.name &&
-            item.name[0].value.toLowerCase().includes(searchValue)) ||
-          (item.name && item.name[1].value.includes(searchValue)),
+  const filterByCategoryValue = (data: RestaurantProps[]) => {
+    return data.filter(item => {
+      const itemCategories = item.categories.map(
+        (item: CategoryProps) => item.name,
       );
+      return itemCategories.includes(category);
+    });
+  };
+
+  const filterBySearchValue = (data: RestaurantProps[]) => {
+    return data.filter(
+      item =>
+        (item.name && item.name[0].value.toLowerCase().includes(searchValue)) ||
+        (item.name && item.name[1].value.includes(searchValue)),
+    );
+  };
+
+  useEffect(() => {
+    // Reset value if category is empty
+    if (searchValue === '' && !!data.length && category) {
+      let filteredItems = filterBySearchValue(data);
+      filteredItems = filterByCategoryValue(data);
+      return setFilteredData(filteredItems);
+    }
+    // Filter by category
+    if (!!searchValue && !!data.length) {
+      let filteredItems = filterBySearchValue(data);
+      if (!!category) {
+        filteredItems = filterByCategoryValue(filteredItems);
+      }
       setFilteredData(filteredItems);
     }
   }, [searchValue]);
 
   useEffect(() => {
     if (!!category && !!data.length) {
-      const filteredItems = data.filter(item => {
-        const itemCategories = item.categories.map(
-          (item: CategoryProps) => item.name,
-        );
-        return itemCategories.includes(category);
-      });
+      let filteredItems = filterByCategoryValue(data);
+      if (!!searchValue) {
+        filteredItems = filterBySearchValue(filteredItems);
+      }
       setFilteredData(filteredItems);
     }
   }, [category]);
